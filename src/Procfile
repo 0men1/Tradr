@@ -1,1 +1,1 @@
-web gunicorm stocknewspy.wsgi:application --log-file -
+web: gunicorn stocknewshome.wsgi:application --log-file - --log-level debug
