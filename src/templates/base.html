@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatiable" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block head_title %}{% endblock %} | Tradr</title>
+        <link rel="stylesheet" href="{% static 'css/output.css' %}">
+        <script src="{% static 'js/home.js' %}"></script>
+
+        
+        <style>
+        .dropdown:hover  .dropdown-menu {
+            display: block;
+        }
+        </style>
+
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    </head>
+
+
+
+    <body class="bg-slate-800">
+        <nav class="w-full h-14 border-2 border-black flex">
+            <a href="{% url 'core:home' %}" class="px-3 py-3 border-2 border-black flex place-content-center w-1/3 hover:bg-gray-200 transition hover:cursor-pointer">Home</a>
+            <a href="{% url 'help' %}" class="px-3 py-3 border-2 border-black flex place-content-center w-1/3 hover:bg-gray-200 transition hover:cursor-pointer">Help</a>
+            {% if user.is_authenticated %}
+            <div class="dropdown inline-block relative w-1/3">
+                <button class="px-3 py-3 border-2 border-black flex place-content-center w-full hover:bg-white transition hover:cursor-pointer rounded inline-flex items-center">
+                <span class="mr-1">Profile</span>
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                </button>
+                <ul class="dropdown-menu absolute hidden text-gray-700 pt-1 w-full">
+                    <div class="rounded-t bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                        <div>Welcome! {{user.username}}</div>
+                        <div class="font-medium truncate">{{user.email}}</div>
+                    </div>              
+                    <li>
+                        <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{% url 'favorites' %}">Favorites</a>
+                    </li>
+                    <li>
+                        <a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{% url 'core:logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+                {% else %}
+                <a href="{% url 'core:login' %}" class="px-3 py-3 border-2 border-black flex place-content-center w-1/3 hover:bg-white transition hover:cursor-pointer">Login</a>
+            {% endif %}
+        </nav>
+
+        <div class="h-screen w-screen">
+            {% block content %}{% endblock %}
+        </div>
+
+
+        <!-- Create an admin page button that is in the bottom right corner of the page -->
+        <div class="fixed bottom-0 right-0">
+            <a href="{% url 'admin:index' %}" class="px-3 py-3 rounded-lg bg-slate-700 hover:bg-white transition hover:cursor-pointer">Admin</a> 
+        </div>
+
+
+    </body>
+    
+
+</html>

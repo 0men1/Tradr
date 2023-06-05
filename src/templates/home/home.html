@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block head_title %} Home {% endblock %}
+
+{% block content %}
+
+<div class="w-screen h-fit grid gap-4 place-content-center">
+
+    <div class="p-8 inline-block">
+        <form method="post" class="flex justify-center gap-4">
+            {% csrf_token %}
+            <div class="block justify-center">
+                
+                <div class="inline-block">
+                    <input name="stock" onclick="myFunction()" type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()" class="bg-slate-700 border-2 border-black h-10 w-56 rounded-lg text-slate-400">
+                </div>
+
+                    <div id="myDropdown" class="absolute dropdown-content flex flex-col  hidden w-68 rounded border border-black bg-slate-700 py-2">
+                        {% if stocknames %}
+                        {% for stock in stocknames %}
+                        <a onclick="setSelectedOption(this)" class="w-full p-4 bg-slate-700 border-2 border-black h-fit rounded-lg text-slate-400 hover:bg-gray-300 hover:cursor-pointer">{{stock.name}}</a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+            </div>
+
+            <div class="flex justify-center">
+                <button type="submit" class="bg-slate-700 border-2 border-black h-10 w-20 rounded-lg text-slate-400">Search</button>
+            </div>
+
+        </form>
+    </div>
+                  
+
+
+
+
+      
+    <div class= "flex justify-center p-4">
+        <div class="w-2/3 h-fit border-2 border-black bg-slate-700 grid gap-2 p-4">
+            <!--One Article  -->
+            {% if news and summary%}
+            {% for article in news %}
+            <div class="border-2 border-black grid rounded-lg p-2 gap-2">
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- <img class="h-10 rounded-full"  src="{% static 'media/Yahooimg.png' %}"> -->
+                    <div class="inline">   
+                        <a class="underline font-bold text-sm" href={{article.link}}>{{article.title}}</a>
+                        <h1 class="text-sm">Date Created: mm/dd/yyyy</h1>
+                    </div>
+                </div> 
+                <div>
+                    <p class="text-sm">
+                        {{summary|get_item:forloop.counter0}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <!-- One Article -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block head_title %} Sign up {% endblock %}
+
+{% block content %}
+
+<!-- Create a login box with rounded edges centered in the middle of the viewport -->
+<div class="flex h-fit place-content-center">
+    <div class="bg-slate-700 rounded-lg shadow-2xl p-8 m-4 max-w-md w-full space-y-4">
+        <h1 class="text-3xl font-bold text-center">Login</h1>
+        <form action="{% url 'core:signup' %}" method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div class="flex flex-col space-y-1">
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="password">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="password">Password</label>
+                {{ form.password1 }}
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="password">Confirm Passowrd</label>
+                {{ form.password2 }}
+            </div>
+
+            {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+
+            <div class = 'flex gap-40'>
+                <div>
+                    <h1>Already have an account?</h1>
+                    <a href="{% url 'core:login' %}" class="px-2 py-2 flex justify-center bg-slate-500 border-2 border-white rounded-lg hover:cursor-pointer hover:bg-slate-200 transition">Login</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col space-y-1 ">
+                <button type="submit" class="border-2 border-gray-300 rounded-lg p-2 bg-blue-400 text-white hover:bg-blue-600 hover:cursor-pointer transition">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

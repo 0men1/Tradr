@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head_title %} Login {% endblock %}
+
+{% block content %}
+
+<!-- Create a login box with rounded edges centered in the middle of the viewport -->
+<div class="flex h-fit place-content-center">
+    <div class="bg-slate-700 rounded-lg shadow-2xl p-8 m-4 max-w-md w-full space-y-4">
+        <h1 class="text-3xl font-bold text-center">Login</h1>
+        <form action="{% url 'core:login' %}" method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div class="flex flex-col space-y-1">
+                <label for="username">Username</label>
+                {{form.username }}
+            </div>
+            <div class="flex flex-col space-y-1">
+                <label for="password">Password</label>
+                {{form.password}}
+            </div>
+            
+            {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div class = 'flex gap-40'>
+                <div>
+                    <input type="checkbox" name="remember" id="remember" class="border-2 border-gray-300 rounded-lg p-2">
+                    <label for="remember">Remember me</label>
+                </div>
+                <div>
+                    <a href="{% url 'core:signup' %}" class="px-2 py-2 flex justify-center bg-slate-500 border-2 border-white rounded-lg hover:cursor-pointer hover:bg-slate-200 transition">Register</a>
+                </div>
+            </div>
+            <div class="flex flex-col space-y-1 ">
+                <input type="submit" value="Login" class="border-2 border-gray-300 rounded-lg p-2 bg-blue-400 text-white hover:bg-blue-600 hover:cursor-pointer transition">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

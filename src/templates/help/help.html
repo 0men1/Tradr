@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+
+{% block head_title %} Help {% endblock %}
+
+
+{% block content %}
+
+<!-- Create an empty div vertical rectangle with round edges and centered in the middle of the screen -->
+<div class="h-screen w-screen flex place-content-center p-8">
+    <div class="h-fit w-fit bg-slate-700 border-2 border-black rounded-lg grid columns-1">
+        <div class="h-fit w-full px-3 py-3 flex place-content-center">
+            <div class="px-3 py-3 flex justify-center w-fit h-fit border-2 border-black rounded-lg hover:bg-slate-800 transition">
+                <h1>Welcome to Tradr</h1>
+            </div>
+        </div>
+
+
+        <div class="inline">
+            <div class="pl-3.5 px-2 py-1 flex justify-center w-fit h-fit rounded-lg hover:bg-slate-800 transition">
+                <h1 class="underline">What is this?</h1>
+            </div>
+            <div class="p-4">
+                <p>This is a place for all of your stock news needs! It will help you learn more about what news articles are saying about certain stocks.</p>
+            </div>
+        </div>
+        <br>
+        <div class="inline">
+            <div class="pl-3.5 px-2 py-1 flex justify-center w-fit h-fit rounded-lg hover:bg-slate-800 transition">
+                <h1 class="underline">Why was it made?</h1>
+            </div>
+            <div class="p-4">
+                <p>This was made to allow everyone the privilege of knowledge and have the same resources as other competitive traders. My inspiration was from YahooFinance. Whenever I would go to that website to read about what journalists have to say about certain stocks I always end up clicking off thinking this isnt the information I need. However, here you are able to get full descriptions/summaries of every article on yahoo finance to make your life easier.</p>
+            </div>
+        </div>
+        <br>
+        <div class="inline">
+            <div class="pl-3.5 px-2 py-1 flex justify-center w-fit h-fit rounded-lg hover:bg-slate-800 transition">
+                <h1 class="underline">How to use it?</h1>
+            </div>
+            <div class="p-4">
+                <p>In order to use this tool follow these steps:
+                    <br>
+                    <br>
+
+                    1. Go to the home page
+                    <br>
+                    <br>
+
+                    2. Type in the stock ticker you want to search for
+                    <br>
+                    <br>
+
+                    3. Click the search button
+                    <br>
+                    <br>
+
+                    4. Read through the summaires to figure out which article stand out to you
+                    <br>
+                    <br>
+
+                    5. Click on the article you want to read
+                    <br>
+                    <br>
+
+                    6. You will be redirected to Yahoo Finance and you can read the full article there
+                    <br>
+                    <br>
+                    This was made with the help of AI and machine learning. The AI will read through the articles and summarize them for you. This is a great tool to use if you are in a rush and want to get the most information in the least amount of time.
+
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div> 
+
+
+
+
+{% endblock %}
